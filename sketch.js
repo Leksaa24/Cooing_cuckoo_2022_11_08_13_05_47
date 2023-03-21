@@ -6,7 +6,7 @@ let y;
 let n=0;
 let n2=0;
 let x2;
-let O = 1.6;
+let O = 10;
 let y2;
 let koko2=15;
 let korkeus2=60;
