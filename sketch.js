@@ -2,7 +2,7 @@ let koko=15;
 let korkeus=60;
 let leveys=10;
 let x=20;
-let y;
+let y=777;
 let n=0;
 let n2=0;
 let x2;
