@@ -1,14 +1,14 @@
-let koko=15;
+let koko=20;
 let korkeus=60;
 let leveys=10;
 let x=20;
-let y;
+let y;  
 let n=0;
 let n2=0;
 let x2;
 let O = 10;
 let y2;
-let koko2=15;
+let koko2=20;
 let korkeus2=60;
 let leveys2 =10;
 
@@ -28,17 +28,18 @@ pallox = width/2;
 x2=width-20;
 y=height/2-korkeus/2
 y2=height/2-korkeus/2
-//nopeusy=random([-0.7, 0.7])
+nopeusy=random([-0.1, 0.1])
 }
 
 
 function draw() {
   background(220);
+  fill('blue');
   rect(x, y, leveys, korkeus);
-  rect(x2, y2, leveys2, korkeus2);
+  fill('red');
+  rect(x2, y2, leveys2, korkeus2,);
   circle(pallox, palloy, pallokoko);
   frameRate(120)
-  fill('red');
   liikutus();
   palloliike();
   collisionx();
@@ -89,15 +90,19 @@ function draw() {
 
   function pisteet(){
   if (n>1||n<1){
+    fill('blue');
   text(n+' pistettä', 10, 30);
   }
   else{
+    fill('blue');
     text(n+' piste', 10, 30);
   }
   if (n2>1||n2<1){
+    fill('red');
   text(n2+' pistettä', width-65, 30);
   }
   else{ 
+    fill('red');
   text(n2+' piste', width-60, 30);
   }
   }
@@ -115,7 +120,7 @@ function draw() {
    pisteet();
    liikutus();
    nopeusx=random ([-4, 4])
-   nopeusy=random ([nopeusy, nopeusy*-1])
+   nopeusy=random([-1, 1])
    
    
    setTimeout(()=>loop(),2000);
@@ -125,49 +130,67 @@ function draw() {
 
   function collisionangle(){
     // palloosuu = pallo koskee mailaan, mailan eri osat, mihin kohtaan osuu
-  let palloosuu = pallox<leveys+x+pallokoko/2;
-  let mailanylaosa = palloy<(y+korkeus)&&palloy>y+korkeus/2;
+  let palloosuu = pallox<leveys+x+pallokoko;
+  let mailanylaosa = palloy<(y+korkeus)&&palloy>y;
   let mailanalaosa = palloy>y&&palloy<y+korkeus/2;
 
-  let palloosuu2 = pallox>x2-pallokoko/2&&pallox<x2&&palloy<(y2+korkeus2+pallokoko/2);
-  let mailanylaosa2 = palloy<(y2+korkeus2)&&palloy>y2+korkeus2/2;
+  let palloosuu2 = pallox>x2-pallokoko&&pallox<x2&&palloy<(y2+korkeus2+pallokoko/2);
+  let mailanylaosa2 = palloy<(y2+korkeus2)&&palloy>y2;
   let mailanalaosa2 = palloy>y2&&palloy<y2+korkeus2/2;
 
 
  
 // vasen maila
+
+ if (palloosuu&&mailanylaosa&&nopeusy>0){
+      nopeusy=nopeusy+1.6;
+ }
+  
+ if(palloosuu&&mailanalaosa&&nopeusy>0){
+      nopeusy=nopeusy-1.6;
+  }
+  
+ if(palloosuu&&mailanylaosa&&nopeusy<0){
+      nopeusy=nopeusy+1.6;
+  }
+  
+    if(palloosuu&&mailanalaosa&&nopeusy<0){
+      nopeusy=nopeusy-1.6;
+  }
+
+
   if(palloosuu&&mailanylaosa&&nopeusy>0){
-    //nopeusy=nopeusy+1.6;
+    nopeusy=nopeusy+1.6;
   }
 
   if(palloosuu&&mailanalaosa&&nopeusy>0){
-    //nopeusy=nopeusy-1.6;
+    nopeusy=nopeusy-1.6;
   }
 
   if(palloosuu&&mailanylaosa&&nopeusy<0){
-    //nopeusy=nopeusy+1.6;
+    nopeusy=nopeusy+1.6;
   }
 
   if(palloosuu&&mailanalaosa&&nopeusy<0){
-    //nopeusy=nopeusy-1.6;
+    nopeusy=nopeusy-1.6;
   }
 
 
   //oikea maila
   if(palloosuu2&&mailanylaosa2&&nopeusy>0){
-  //  nopeusy=nopeusy+1.6;
+   nopeusy=nopeusy+1.6;
   }
 
   if(palloosuu2&&mailanalaosa2&&nopeusy>0){
-    //nopeusy=nopeusy-1.6;
+    nopeusy=nopeusy-1.6;
   }
 
   if(palloosuu2&&mailanylaosa2&&nopeusy<0){
-    //nopeusy=nopeusy+1.6;
+   nopeusy=nopeusy+1.6;
   }
 
   if(palloosuu2&&mailanalaosa2&&nopeusy<0){
-  //  nopeusy=nopeusy-1.6;
+   nopeusy=nopeusy-1.6;
   }
   }
 
@@ -185,6 +208,7 @@ function draw() {
 
 function mousePressed(){
   loop()
+  nopeusy=random([-0.1, 0.1])
 
  }
 
